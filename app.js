@@ -18,7 +18,6 @@ app.get('/', async (req, res) => {
             tlsOptions: {
                 rejectUnauthorized: false
             },
-            keepalive: true,
             authTimeout: 3000,
             debug: console.log
         }
@@ -28,13 +27,11 @@ app.get('/', async (req, res) => {
 
     imaps.connect(config).then(function (connection) {
         return connection.openBox('INBOX').then(function () {
-            var searchCriteria = ['SEEN'];
+            var searchCriteria = ['UNSEEN'];
             var fetchOptions = {
                 bodies: ['HEADER', 'TEXT', ''],
             };
-            connection.on("new", (messsage) => {
-                console.log(" new message", messsage)
-            })
+
             return connection.search(searchCriteria, fetchOptions).then(function (messages) {
                 messages.forEach(function (item) {
 
@@ -110,9 +107,9 @@ app.get('/', async (req, res) => {
                         })
 
                         const finalObject = Object.assign({}, ...newArray);
-                        
+                        fs.writeFileSync(`${mail.subject.split(" ")[0].replace(/[^a-z\d\s]+/gi, "")}.txt`,JSON.stringify(finalObject))
                         console.log("Mail Subject======================================", finalObject)
-
+res.send("finished")
                     });
                 });
             });
