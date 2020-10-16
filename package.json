@@ -1,0 +1,21 @@
+{
+  "name": "emailoutlooknodeapp",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "imap-simple": "^5.0.0",
+    "loadash": "^1.0.0",
+    "mailparser": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  },
+  "description": ""
+}
