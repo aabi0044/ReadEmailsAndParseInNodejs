@@ -43,9 +43,11 @@ app.get('/', async (req, res) => {
                         let newArray = []
                         textInArray = mail.text.split("\n")
                         await textInArray.forEach(item => {
+
                             if (item.startsWith("Scheduled Closing Date and Time:")) {
                                 newArray.push({ ['schedulingClosingDateAndTime']: item.replace('Scheduled Closing Date and Time:', '').trim() })
                             }
+
                             if (item.startsWith("Closing Location:")) {
                                 newArray.push({ ['closingLocation']: item.replace('Closing Location:', '').trim() })
                             }
@@ -57,9 +59,11 @@ app.get('/', async (req, res) => {
                             if (item.startsWith("Instructions:")) {
                                 newArray.push({ ['Instructions']: item.replace('Instructions:', '').trim() })
                             }
+
                             if (item.startsWith("Order #:")) {
                                 newArray.push({ ['orderNumber']: item.replace('Order #:', '').trim() })
                             }
+
                             if (item.startsWith("Primary Loan #:")) {
                                 newArray.push({ ['primaryLoanNumber']: item.replace('Primary Loan #:', '').trim() })
                             }
@@ -67,15 +71,19 @@ app.get('/', async (req, res) => {
                             if (item.startsWith("Primary Loan Type:")) {
                                 newArray.push({ ['primaryLoanType']: item.replace('Primary Loan Type:', '').trim() })
                             }
+
                             if (item.startsWith("Property Address:")) {
                                 newArray.push({ ['propertyAddress']: item.replace('Property Address:', '').trim() })
                             }
+
                             if (item.startsWith("Borrower -")) {
                                 newArray.push({ ['borrower']: item.replace('Borrower -', '').trim() })
                             }
+
                             if (item.startsWith("Home:")) {
                                 newArray.push({ ['homeNumber']: item.replace('Home:', '').trim() })
                             }
+                            
                         })
 
                         newArray.forEach((item, index) => {
