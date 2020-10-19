@@ -127,22 +127,38 @@ app.get('/', async (req, res) => {
                             finalObject.schedulingClosingDateAndTime={
                                 date,time
                             }
-                            
+
+                            finalObject.borrower1={
+                                firstName:finalObject.borrower1.split(" ")[0],
+                                lastName:finalObject.borrower1.split(" ")[1]
+                            }
+
+                            finalObject.borrower2={
+                                firstName:finalObject.borrower2.split(" ")[0],
+                                lastName:finalObject.borrower2.split(" ")[1]
+                            }
+
+                            // Google map api geocodingapi integration
+
                             var publicConfig = {
-                                key: 'AIzaSyBUc7jJ_PvS8fORd-6-Lju_YWR-CgX6cis',
+                                key: '***********************',
                                 stagger_time:       1000, 
                                 encode_polylines:   false,
                                 secure:             false, 
                                
                               };
+
+                              // creating instance of api class
+
                               var gmAPI = new GoogleMapsAPI(publicConfig);
+
                             var closingLocationParams = {
                                 "address":    finalObject.closingLocation,
-                              
                               };
+
                               var propertyAddressParams = {
                                   address: finalObject.propertyAddress
-                              }
+                              };
                               
                               gmAPI.geocode(closingLocationParams, (err, result)=>{
                               
@@ -154,10 +170,10 @@ app.get('/', async (req, res) => {
                                     state:address[2].replace(/[0-9]/g, '').trim(),
                                     zip:address[2].replace( /^\D+/g, '').trim(),
                                     country:address[3].trim()
-
                                 }
 
                                 gmAPI.geocode(propertyAddressParams, (err, resp)=>{
+
                                     const address2 = resp.results[0].formatted_address.split(",");
                                     finalObject.propertyAddress={
                                         address:address2[0].trim(),
@@ -165,24 +181,12 @@ app.get('/', async (req, res) => {
                                         state:address2[2].replace(/[0-9]/g, '').trim(),
                                         zip:address2[2].replace( /^\D+/g, '').trim(),
                                         country:address2[3].trim()
-    
                                     }
 
-                                    finalObject.borrower1={
-                                        firstName:finalObject.borrower1.split(" ")[0],
-                                        lastName:finalObject.borrower1.split(" ")[1]
-
-                                    }
-
-                                    finalObject.borrower2={
-                                        firstName:finalObject.borrower2.split(" ")[0],
-                                        lastName:finalObject.borrower2.split(" ")[1]
-
-                                    }
-                                    
+                             
                                     fs.writeFileSync(`${mail.subject.split(" ")[0].replace(/[^a-z\d\s]+/gi, "")}.txt`, JSON.stringify(finalObject))
                                     console.log("Mail Subject======================================", finalObject)
-                                    res.send("finished")
+                                    res.send("Process finished")
                                 })
                               });
                         }
