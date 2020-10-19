@@ -43,7 +43,6 @@ app.get('/', async (req, res) => {
                     var idHeader = "Imap-Id: " + id + "\r\n";
                     let textInArray = []
                     simpleParser(idHeader + all.body, async (err, mail) => {
-                        console.log("Mail Subject======================================", mail.subject)
                         if (mail.subject.startsWith("Fw: Closing Service Ordered for Primary Loan")) {
                             let newArray = []
                             textInArray = mail.text.split("\n")
@@ -149,8 +148,7 @@ app.get('/', async (req, res) => {
                               gmAPI.geocode(closingLocationParams, (err, result)=>{
                               
                                 const address = result.results[0].formatted_address.split(",");
-                                const state_zip = address[2].replace( /^\D+/g, '');
-                                console.log("state_zip",state_zip)
+                            
                                 finalObject.closingLocation={
                                     address:address[0].trim(),
                                     city:address[1].trim(),
@@ -159,6 +157,7 @@ app.get('/', async (req, res) => {
                                     country:address[3].trim()
 
                                 }
+
                                 gmAPI.geocode(propertyAddressParams, (err, resp)=>{
                                     const address2 = resp.results[0].formatted_address.split(",");
                                     finalObject.propertyAddress={
@@ -169,30 +168,25 @@ app.get('/', async (req, res) => {
                                         country:address2[3].trim()
     
                                     }
+
                                     finalObject.borrower1={
                                         firstName:finalObject.borrower1.split(" ")[0],
                                         lastName:finalObject.borrower1.split(" ")[1]
 
                                     }
+
                                     finalObject.borrower2={
                                         firstName:finalObject.borrower2.split(" ")[0],
                                         lastName:finalObject.borrower2.split(" ")[1]
 
                                     }
                                     
-
-                                    console.log("addresssssssssssssssss",address)
                                     fs.writeFileSync(`${mail.subject.split(" ")[0].replace(/[^a-z\d\s]+/gi, "")}.txt`, JSON.stringify(finalObject))
                                     console.log("Mail Subject======================================", finalObject)
                                     res.send("finished")
                                 })
-                                 
                               });
-                         
-
-                         
                         }
-
                     });
                 });
             });
