@@ -127,8 +127,7 @@ app.get('/', async (req, res) => {
                             finalObject.schedulingClosingDateAndTime={
                                 date,time
                             }
-
-                            // const address = finalObject.closingLocation.split(",");
+                            
                             var publicConfig = {
                                 key: 'AIzaSyBUc7jJ_PvS8fORd-6-Lju_YWR-CgX6cis',
                                 stagger_time:       1000, 
