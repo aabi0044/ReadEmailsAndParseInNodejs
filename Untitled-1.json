@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "2acf1806-37be-44af-9f95-fb1873f60fce",
+		"name": "pacDocSign Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://quicksign.local/api/notaryapi - signing request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"function\":\"submit_signing_request\",\"parameters\":{\"order_id\":\"12926683\",\"signing_address_data\":{\"address_name\":\"Home\",\"address\":\"10425 WOODSIDE MEADOW Terrace\",\"address2\":null,\"city\":\"Glen Allen\",\"state\":\"VA\",\"zip\":\"23059\",\"county\":\"Henrico\"},\"closing_type\":4,\"closing_date\":\"2020-10-27 17:00:00\",\"signer_email\":null,\"signer_cell_phone\":null,\"signer_home_phone\":\"(804) 551-3248\",\"signer_work_phone\":null,\"order_note\":\"804-551-3248  PLEASE REQUEST LINDA IF POSSIBLE. RETIRED VACU EMPLOYEE\\n\\nHELOC\",\"signing_parties_data\":{\"phone\":\"(804) 551-3248\",\"first_name\":\"CAROL MONTAGNINO and EUGENE B\",\"last_name\":\"MONTAGNINO\"},\"signer_data\":null,\"co_signer_data\":null,\"scanbacks_required\":null}}"
+				},
+				"url": {
+					"raw": "https://crm-staging.pacdocsign.com/api/notaryapi",
+					"protocol": "https",
+					"host": [
+						"crm-staging",
+						"pacdocsign",
+						"com"
+					],
+					"path": [
+						"api",
+						"notaryapi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://crm-staging.pacdocsign.com/api/order/createorder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"function\":\"place_order\",\"parameters\":{\"title_user_data\":{\"first_name\":\"Marie \",\"last_name\":\"Anderson\",\"email\":\"marie.anderson@titlefirst.com\",\"phone\":\"614-347-8383\",\"company\":\"Title First\",\"client_company_name\":\"Title First\"},\"user_id\":7466,\"alt_user_id\":null,\"branch_id\":9164,\"alt_branch_id\":null,\"title_id\":5911,\"alt_title_id\":null,\"agency_id\":null,\"client_type\":1,\"borrower_data\":{\"first_name\":\"CAROL\",\"last_name\":\"MONTAGNINO\",\"address\":{\"address_name\":\"\",\"address\":\" 10425 WOODSIDE MEADOW Terrace\",\"address2\":null,\"city\":\"Glen Allen\",\"state\":\"VA\",\"zip\":\"23059\",\"country\":\"\"},\"home_phone\":\"\",\"cell_phone\":\"(804) 551-3248\",\"work_phone\":\"\"},\"co_borrower_data\":{\"first_name\":\"EUGENE\",\"last_name\":\"MONTAGNINO\",\"cell_phone\":null},\"seller_data\":{\"first_name\":null,\"last_name\":null,\"address\":{\"address_name\":\"\",\"address\":\"\",\"address2\":null,\"city\":null,\"state\":\"\",\"zip\":null,\"country\":\"\"},\"home_phone\":null,\"cell_phone\":null,\"work_phone\":\"\"},\"co_seller_data\":{\"first_name\":null,\"last_name\":null,\"cell_phone\":null},\"lender_data\":{\"company_name\":\"Virginia Credit Union\",\"last_name\":\"\",\"first_name\":\"\",\"email\":null,\"website\":null,\"phone\":\"(000) 000-0000\",\"fax\":null,\"notes\":null,\"address\":{\"address\":\"  13505 Tredegar Lake Pkwy \",\"address2\":null,\"city\":\"Midlothian\",\"state\":\"VA\",\"zip\":\"23113\",\"county\":null}},\"property_address_data\":{\"address\":\"10425 WOODSIDE MEADOW Terrace\",\"address2\":null,\"city\":\"Glen Allen\",\"state\":\"VA\",\"zip\":\"23059\",\"county\":\"Hanover\"},\"signing_address_data\":null,\"mortgage_data\":null,\"closing_type\":\"20\",\"document_delivery_type\":null,\"closing_date\":\"2020-10-27 17:00:00\",\"originator_order_id\":\"2091100\",\"originator_file_id\":\"2091100\",\"cc_email_addresses\":\"\",\"order_note\":null,\"min_pay_amount\":null,\"max_pay_amount\":null,\"scanbacks_required\":null}}"
+				},
+				"url": {
+					"raw": "https://crm-staging.pacdocsign.com/api/notaryapi",
+					"protocol": "https",
+					"host": [
+						"crm-staging",
+						"pacdocsign",
+						"com"
+					],
+					"path": [
+						"api",
+						"notaryapi"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,7 +1,7 @@
 {
   schedulingClosingDateAndTime: { date: 'October 16, 2020', time: '7:00 PM' },
   closingLocation: {
-    address: '3394 Melendy Dr',
+    address: '3394 Melendy Dr', 
     city: 'San Carlos',
     state: 'CA',
     zip: '94070',
@@ -13,7 +13,7 @@ Home: 6507733314 Work: Ext. Cell: Client 2: Sharada Sivaraman Home: 6507733323 W
   orderNumber: '68778748',
   primaryLoanNumber: '3462395024',
   primaryLoanType: 'FIXEDRATE',
-  propertyAddress: {
+  propertyAddress: {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
     address: '3394 Melendy Dr',
     city: 'San Carlos',
     state: 'CA',
